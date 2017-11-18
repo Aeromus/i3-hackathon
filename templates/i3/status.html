@@ -1,5 +1,9 @@
 {% load staticfiles %}
 
+    <!--Distance to Planet-->
+    <p>At planet: {{ Ship.planet }}</p>
+    <p>Distance to next planet: {{ Ship.distance_to_planet }}</p>
+
     <!--HEALTH-->
     <p>{% if Ship.health >= 800 %}
     <img src="{%  static 'green-light.png' %}">
