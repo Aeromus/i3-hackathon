@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {%block content%}
-    <link rel="stylesheet" href="{% static 'ftl_crank.css' %}" />
+    <link rel="stylesheet" href="{% static 'ftl_crank2.css' %}" />
     ENGINE
     <div>Cooling:
         <!-- Rectangular switch -->
@@ -12,16 +12,21 @@
         </label>
     </div>
 
+
+    FTL
     <div>
 
-    <div id="controlbar"></div>
-    <div id="volumebar">
-    <div id="volume"></div>
-        </div>
-    <div id="display"><img src="https://image.ibb.co/ktNgTF/volume.png" alt="volume" border="0" id="icon" /></div>
-    <div id="indicator">0</div>
-    <div id="target" class="bar" style="width: 45px; height: 150px; margin: 0 auto;"></div>
-<script src="{% static 'ftl_crank.js' %}"></script>
+    <div id="volumeBarHolder">
+        <div id="volumeBar"></div>
+            </div><div>
+  <img id="wheel" src="https://image.ibb.co/ivFeFv/handle2.png" />
+    </div>
+        <script type="text/javascript" src="ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/utils/Draggable.min.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+
+
+        <script type="text/javascript" src="{% static 'ftl_crank2.js' %}"></script>
     </div>
 
     <div style="float: right;" id="status"></div>
