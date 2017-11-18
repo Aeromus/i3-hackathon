@@ -13,7 +13,7 @@ class Ship(models.Model):
     planet = models.IntegerField(default=0)
     distance_to_planet = models.FloatField(default=10000)
     health = models.FloatField(default=1000)
-    multiplier = models.FloatField(default=0.001)
+    multiplier = models.FloatField(default=0.1)
     oxygen = models.FloatField(default=100)
     heat = models.FloatField(default=50)
     cooling = models.BooleanField(default=True)
@@ -25,16 +25,32 @@ class Ship(models.Model):
     ftl_on = models.BooleanField(default=False)
 
     def update(self):
-        self.oxygen -= self.multiplier
-        self.fuel -= self.multiplier
+        health_loss = 1
+
+        if self.oxygen > 0:
+            self.oxygen -= self.multiplier
+        else:
+            self.health -= health_loss
+
+
+        if self.fuel > 0:
+            self.fuel -= self.multiplier
+        else:
+            self.ftl_on = False
+
+        if abs(self.cooling) > 100:
+            self.health -= health_loss
         if self.cooling:
             self.heat -= self.multiplier
         else:
             self.heat += self.multiplier
+
+
         if self.distance_to_planet < 1:
             self.planet += 1
             self.distance_to_planet = 10000
-            self.multiplier *= 10
+            self.multiplier *= 2
+
         if self.ftl_on:
             if self.gps == Planets[self.planet]:
                 self.distance_to_planet -= 10 + random.randint(1,100)
