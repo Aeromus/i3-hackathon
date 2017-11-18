@@ -9,7 +9,7 @@ from django.views.generic import TemplateView
 from models import Ship
 from django.shortcuts import render
 
-Current_Ship = 4
+Current_Ship = 5
 
 # Create your views here.
 def index(request):
@@ -63,5 +63,28 @@ def itinerary(request):
 def ftl_on(request):
     ship = Ship.objects.get(pk=Current_Ship)
     ship.ftl_on = True
+    ship.save()
+    return HttpResponse('BUENO')
+
+
+def pump_oxygen(request):
+    ship = Ship.objects.get(pk=Current_Ship)
+    if ship.oxygen < 150:
+        ship.oxygen += 1
+    ship.save()
+    return HttpResponse('BUENO')
+
+
+def move_fuel(request):
+    ship = Ship.objects.get(pk=Current_Ship)
+    ship.engine_fuel += 0.1
+    ship.save()
+    return HttpResponse('BUENO')
+
+
+def enter_fuel(request):
+    ship = Ship.objects.get(pk=Current_Ship)
+    if ship.engine_fuel > 0:
+        ship.engine_fuel += 0.1
     ship.save()
     return HttpResponse('BUENO')

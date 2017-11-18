@@ -13,4 +13,7 @@ urlpatterns = [
     url(r'^set_gps/(?P<gps_coords>[0-9]+)/$', views.set_gps, name='set_gps'),
     url(r'^itinerary/$', views.itinerary, name='itinerary'),
     url(r'^ftl_on/$', views.ftl_on, name='ftl_on'),
+    url(r'^pump_oxygen/$', views.pump_oxygen, name='pump_oxygen'),
+    url(r'^move_fuel/$', views.move_fuel, name='move_fuel'),
+    url(r'^enter_fuel/$', views.enter_fuel, name='enter_fuel'),
 ]

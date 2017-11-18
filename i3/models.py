@@ -17,6 +17,7 @@ class Ship(models.Model):
     oxygen = models.FloatField(default=100)
     heat = models.FloatField(default=50)
     cooling = models.BooleanField(default=True)
+    engine_fuel = models.FloatField(default=0)
     fuel = models.FloatField(default=100)
     current_shield = models.CharField(max_length=4,default='aaaa')
     ideal_shield = models.CharField(max_length=4,default='aaaa')

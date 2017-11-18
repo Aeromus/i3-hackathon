@@ -11,7 +11,7 @@ $("#target").draggable({
   drag: function(event, ui) {
     var pos = ui.position.top;
     if (pos > last && volume < 100 && (pos % 2 == 0)) {
-      volume++;
+      asy("pump_oxygen")
     }
     last = pos;
     console.log(ui.position.top);
