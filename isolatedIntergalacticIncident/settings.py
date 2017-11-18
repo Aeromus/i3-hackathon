@@ -25,7 +25,7 @@ SECRET_KEY = 'mmo!tf1tw!s=#3*%)c(j)sskfwb4^#j&t78v3=ies^g(3r%kzf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.42.0.1']
+ALLOWED_HOSTS = ['10.42.0.1','127.0.0.1']
 
 
 # Application definition
