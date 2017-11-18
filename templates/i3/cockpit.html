@@ -25,4 +25,16 @@ OXYGEN PUMP
     <script src = "{% static 'pump.js' %}"></script>
     </div>
     <button onclick="asy('move_fuel')">MOVE FUEL TO ENGINE ROOM</button>
+    <div id="slidecontainer">
+        <span>Shield frequency: <span id = "output"></span></span>
+        <input type="range" min="0" max="100" value="50" id="myRange">
+    </div>
+    <script type="text/javascript">
+        var slider = document.getElementById("myRange");
+        var output = document.getElementById("output");
+        slider.oninput = function() {
+            asy("set_shield/"+this.value)
+            output.innerHTML = this.value;
+            }
+    </script>
 {%endblock%}

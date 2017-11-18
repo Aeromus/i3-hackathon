@@ -19,8 +19,9 @@ class Ship(models.Model):
     cooling = models.BooleanField(default=True)
     engine_fuel = models.FloatField(default=0)
     fuel = models.FloatField(default=100)
-    current_shield = models.CharField(max_length=4,default='aaaa')
-    ideal_shield = models.CharField(max_length=4,default='aaaa')
+    current_shield = models.IntegerField(default=0)
+    ideal_shield = models.IntegerField(default=0)
+    shield_instability = models.FloatField(default=0)
     gps = models.CharField(max_length=6, default='000000')
     self_destruct = models.BooleanField(default=False)
     ftl_on = models.BooleanField(default=False)
@@ -35,7 +36,7 @@ class Ship(models.Model):
 
 
         if self.fuel > 0 and self.ftl_on:
-            self.fuel -= self.multiplier
+            self.fuel -= .5
         else:
             self.ftl_on = False
 
@@ -51,12 +52,21 @@ class Ship(models.Model):
             self.planet += 1
             self.distance_to_planet = 10000
             self.multiplier *= 2
+            self.health += 100
 
         if self.ftl_on:
             if self.gps == Planets[self.planet]:
                 self.distance_to_planet -= 10 + random.randint(1,100)
             else:
                 self.distance_to_planet += random.randint(-20,20)
+
+        self.shield_instability += self.multiplier
+        if random.randint(0,200) < self.shield_instability:
+            self.ideal_shield = random.randint(5,95)
+            self.shield_instability = 0
+
+        if (self.current_shield + 10 > self.ideal_shield and self.current_shield - 10 < self.ideal_shield):
+            self.health -= health_loss
 
     def switch_cooling(self):
         self.cooling = not self.cooling

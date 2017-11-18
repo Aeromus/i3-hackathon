@@ -9,7 +9,7 @@ from django.views.generic import TemplateView
 from models import Ship
 from django.shortcuts import render
 
-Current_Ship = 5
+Current_Ship = 8
 
 # Create your views here.
 def index(request):
@@ -24,18 +24,20 @@ def wc(request):
 
 def cockpit(request):
     template = 'i3/cockpit.html'
-    return render(request,template)
+    ship, created = Ship.objects.get_or_create(pk=Current_Ship)
+    return render(request,template,{'Ship': ship})
 
 
 def engine(request):
     template = 'i3/engine.html'
-    return render(request,template)
+    ship, created = Ship.objects.get_or_create(pk=Current_Ship)
+    return render(request,template,{'Ship': ship})
 
 
 def status(request):
     ship, created = Ship.objects.get_or_create(pk= Current_Ship)
     ship.update()
-    shield = ship.ideal_shield == ship.current_shield
+    shield = not (ship.current_shield + 10 > ship.ideal_shield and ship.current_shield - 10 < ship.ideal_shield)
     ship.save()
     template = 'i3/status.html'
     return render(request,template,{'Ship': ship,'Shield':shield})
@@ -87,5 +89,12 @@ def enter_fuel(request):
     if ship.engine_fuel > 0:
         ship.engine_fuel -= 1
         ship.fuel += 1
+    ship.save()
+    return HttpResponse('BUENO')
+
+
+def set_shield(request,shield_val):
+    ship = Ship.objects.get(pk=Current_Ship)
+    ship.current_shield = shield_val
     ship.save()
     return HttpResponse('BUENO')
