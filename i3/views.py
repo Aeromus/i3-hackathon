@@ -28,3 +28,7 @@ def cockpit(request):
 def engine(request):
     template = 'i3/engine.html'
     return render(request,template)
+
+
+def status(request):
+    return None
