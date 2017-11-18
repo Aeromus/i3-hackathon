@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.utils import timezone
 from django.views.generic import TemplateView
 
-
+from models import Ship
 from django.shortcuts import render
 
 # Create your views here.
@@ -31,4 +31,9 @@ def engine(request):
 
 
 def status(request):
-    return None
+    ship, created = Ship.objects.get_or_create(pk='3')
+    ship.update()
+    shield = ship.ideal_shield == ship.current_shield
+    ship.save()
+    template = 'i3/status.html'
+    return render(request,template,{'Ship': ship,'Shield':shield})
