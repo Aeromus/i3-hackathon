@@ -16,4 +16,3 @@ build/
 tests/report/
 HakootApp/migrations/
 *.sqlite3
-*.css
