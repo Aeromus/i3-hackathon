@@ -28,3 +28,5 @@ class Ship(models.Model):
         else:
             self.heat += self.multiplier
 
+    def switch_cooling(self):
+        self.cooling = not self.cooling
