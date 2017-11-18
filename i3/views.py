@@ -18,3 +18,13 @@ def index(request):
 def wc(request):
     template = 'i3/wc.html'
     return render(request,template)
+
+
+def cockpit(request):
+    template = 'i3/cockpit.html'
+    return render(request,template)
+
+
+def engine(request):
+    template = 'i3/engine.html'
+    return render(request,template)

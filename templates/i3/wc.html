@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
 {%block content%}
-    <p>REDIRECTED</p>
+    <div class = "button">
+        <a href="{% url 'i3:cockpit' %}">Begin</a>
+    </div>
+    <div class = "button">
+        <a href="{% url 'i3:engine' %}">Begin</a>
+    </div>
 {%endblock%}
