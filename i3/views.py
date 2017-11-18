@@ -43,6 +43,6 @@ def status(request):
 
 def cooling_switch(request):
     ship = Ship.objects.get(pk=Current_Ship)
-    ship.cooling = not ship.cooling
+    ship.switch_cooling()
     ship.save()
-    return HttpResponse('BUENO')
+    return HttpResponse(str(ship.cooling))
