@@ -2,8 +2,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
+import random
 
-Planets = {"648721","876194","846721","427619","465973","321678","976382","346197","276481","000000"}
+Planets = ["648721","876194","846721","427619","465973","321678","976382","346197","276481","000000"]
 
 # Create your models here.
 
@@ -36,9 +37,9 @@ class Ship(models.Model):
             self.multiplier *= 10
         if self.ftl_on:
             if self.gps == Planets[self.planet]:
-                self.distance_to_planet -= 1
+                self.distance_to_planet -= 10 + random.randint(1,100)
             else:
-                self.distance_to_planet += 1
+                self.distance_to_planet += random.randint(-20,20)
 
     def switch_cooling(self):
         self.cooling = not self.cooling

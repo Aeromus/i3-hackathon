@@ -58,3 +58,10 @@ def set_gps(request,gps_coords):
 def itinerary(request):
     template = 'i3/itinerary.html'
     return render(request,template)
+
+
+def ftl_on(request):
+    ship = Ship.objects.get(pk=Current_Ship)
+    ship.ftl_on = True
+    ship.save()
+    return HttpResponse('BUENO')

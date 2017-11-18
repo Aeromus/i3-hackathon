@@ -16,10 +16,12 @@ $(function() {
 });
 
 function onWheelDrag() {
-  setVolumeWidth();
+
   if(wheelDrag.rotation == maxRotation){
-     alert("FTL POWERED UP!!!!");
+      asy('ftl_on');
+      wheelDrag.rotation = minRotation;
      }
+  setVolumeWidth();
 }
 
 function setVolumeWidth() {
