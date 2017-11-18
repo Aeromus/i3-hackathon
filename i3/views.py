@@ -77,7 +77,7 @@ def pump_oxygen(request):
 
 def move_fuel(request):
     ship = Ship.objects.get(pk=Current_Ship)
-    ship.engine_fuel += 0.1
+    ship.engine_fuel += 1
     ship.save()
     return HttpResponse('BUENO')
 
@@ -85,6 +85,7 @@ def move_fuel(request):
 def enter_fuel(request):
     ship = Ship.objects.get(pk=Current_Ship)
     if ship.engine_fuel > 0:
-        ship.engine_fuel += 0.1
+        ship.engine_fuel -= 1
+        ship.fuel += 1
     ship.save()
     return HttpResponse('BUENO')

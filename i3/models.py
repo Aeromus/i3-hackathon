@@ -34,12 +34,12 @@ class Ship(models.Model):
             self.health -= health_loss
 
 
-        if self.fuel > 0:
+        if self.fuel > 0 and self.ftl_on:
             self.fuel -= self.multiplier
         else:
             self.ftl_on = False
 
-        if abs(self.cooling) > 100:
+        if abs(self.heat) > 100:
             self.health -= health_loss
         if self.cooling:
             self.heat -= self.multiplier
