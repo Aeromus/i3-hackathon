@@ -9,7 +9,7 @@ from django.views.generic import TemplateView
 from models import Ship
 from django.shortcuts import render
 
-Current_Ship = 3
+Current_Ship = 4
 
 # Create your views here.
 def index(request):
@@ -46,3 +46,15 @@ def cooling_switch(request):
     ship.switch_cooling()
     ship.save()
     return HttpResponse(str(ship.cooling))
+
+
+def set_gps(request,gps_coords):
+    ship = Ship.objects.get(pk=Current_Ship)
+    ship.gps = gps_coords
+    ship.save()
+    return HttpResponse('BUENO')
+
+
+def itinerary(request):
+    template = 'i3/itinerary.html'
+    return render(request,template)
