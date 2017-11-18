@@ -2,5 +2,13 @@
 
 {%block content%}
     ENGINE
+    <div>Cooling:
+        <!-- Rectangular switch -->
+        <label class="switch" onclick="asy('cooling_switch')">
+          <input type="checkbox">
+          <span class="slider"></span>
+        </label>
+    </div>
+
     <div style="float: right;" id="status"></div>
 {%endblock%}

@@ -9,6 +9,8 @@ from django.views.generic import TemplateView
 from models import Ship
 from django.shortcuts import render
 
+Current_Ship = 3
+
 # Create your views here.
 def index(request):
     template = 'i3/index.html'
@@ -31,9 +33,16 @@ def engine(request):
 
 
 def status(request):
-    ship, created = Ship.objects.get_or_create(pk='3')
+    ship, created = Ship.objects.get_or_create(pk= Current_Ship)
     ship.update()
     shield = ship.ideal_shield == ship.current_shield
     ship.save()
     template = 'i3/status.html'
     return render(request,template,{'Ship': ship,'Shield':shield})
+
+
+def cooling_switch(request):
+    ship = Ship.objects.get(pk=Current_Ship)
+    ship.cooling = not ship.cooling
+    ship.save()
+    return HttpResponse('BUENO')

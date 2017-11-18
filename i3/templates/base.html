@@ -26,6 +26,14 @@
       }
     });
 }, 1000);
+
+    function asy(place){
+        $.ajax({
+      type:"get",
+      url:"/"+place+"/",
+      datatype:"html",
+    });
+    }
 </script>
 
 
