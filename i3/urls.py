@@ -16,5 +16,5 @@ urlpatterns = [
     url(r'^pump_oxygen/$', views.pump_oxygen, name='pump_oxygen'),
     url(r'^move_fuel/$', views.move_fuel, name='move_fuel'),
     url(r'^enter_fuel/$', views.enter_fuel, name='enter_fuel'),
-    url(r'^set_shield/(?P<shield_val>[0-9]+)/$', views.set_shield, name='set_shield'),
+    url(r'^game_over/$', views.game_over, name='game_over'),
 ]
